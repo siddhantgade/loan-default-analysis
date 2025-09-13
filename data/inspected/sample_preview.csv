@@ -1,0 +1,6 @@
+id,address_state,application_type,emp_length,emp_title,grade,home_ownership,issue_date,last_credit_pull_date,last_payment_date,loan_status,next_payment_date,member_id,purpose,sub_grade,term,verification_status,annual_income,dti,installment,int_rate,loan_amount,total_acc,total_payment
+REDACTED,REDACTED,INDIVIDUAL,< 1 year,REDACTED,C,RENT,11/2/2021,13-09-2021,13-04-2021,Charged Off,13-05-2021,REDACTED,car,C4, 60 months,Source Verified,30000,0.01,59.83,0.1527,2500,4,1009
+REDACTED,REDACTED,INDIVIDUAL,9 years,REDACTED,E,RENT,1/1/2021,14-12-2021,15-01-2021,Fully Paid,15-02-2021,REDACTED,car,E1, 36 months,Source Verified,48000,0.0535,109.43,0.1864,3000,4,3939
+REDACTED,REDACTED,INDIVIDUAL,4 years,REDACTED,C,RENT,5/1/2021,12/12/2021,9/1/2021,Charged Off,9/2/2021,REDACTED,car,C5, 36 months,Not Verified,50000,0.2088,421.65,0.1596,12000,11,3522
+REDACTED,REDACTED,INDIVIDUAL,< 1 year,REDACTED,B,MORTGAGE,25-02-2021,12/12/2021,12/3/2021,Fully Paid,12/4/2021,REDACTED,car,B2, 60 months,Source Verified,42000,0.054,97.06,0.1065,4500,9,4911
+REDACTED,REDACTED,INDIVIDUAL,10+ years,REDACTED,A,MORTGAGE,1/1/2021,14-12-2021,15-01-2021,Fully Paid,15-02-2021,REDACTED,car,A1, 36 months,Verified,83000,0.0231,106.53,0.0603,3500,28,3835
