@@ -1,30 +1,32 @@
-# Data Dictionary
+# Data Dictionary — Bank Loan Dataset
 
-This file describes all columns in the `financial_loan.csv` dataset. It includes column names, inferred data types, one example value, and null percentage.
-
-| Column | Type | Example | Null_% |
-|:-------|:-----|:--------|------:|
-| id | int64 | 1077430 | 0.0 |
-| address_state | object | GA | 0.0 |
-| application_type | object | INDIVIDUAL | 0.0 |
-| emp_length | object | < 1 year | 0.0 |
-| emp_title | object | Ryder | 3.73 |
-| grade | object | C | 0.0 |
-| home_ownership | object | RENT | 0.0 |
-| issue_date | object | 11-02-2021 | 0.0 |
-| last_credit_pull_date | object | 13-09-2021 | 0.0 |
-| last_payment_date | object | 13-04-2021 | 0.0 |
-| loan_status | object | Charged Off | 0.0 |
-| next_payment_date | object | 13-05-2021 | 0.0 |
-| member_id | int64 | 1314167 | 0.0 |
-| purpose | object | car | 0.0 |
-| sub_grade | object | C4 | 0.0 |
-| term | object |  60 months | 0.0 |
-| verification_status | object | Source Verified | 0.0 |
-| annual_income | float64 | 30000.0 | 0.0 |
-| dti | float64 | 0.01 | 0.0 |
-| installment | float64 | 59.83 | 0.0 |
-| int_rate | float64 | 0.1527 | 0.0 |
-| loan_amount | int64 | 2500 | 0.0 |
-| total_acc | int64 | 4 | 0.0 |
-| total_payment | int64 | 1009 | 0.0 |
+This dictionary documents the schema of the bank_loan_data dataset.  
+It includes column names, SQL-style data types, and business definitions.  
+----------------------------------------------------------------------------------------------------------------
+| Column                | Type        | Description                                                            |
+|-----------------------|-------------|------------------------------------------------------------------------|
+| id                    | BIGINT      | Unique identifier for each loan record.                                |
+| member_id             | BIGINT      | Unique identifier for the borrower.                                    |
+| loan_amount           | INT         | Principal loan amount issued.                                          |
+| loan_status           | VARCHAR(50) | Current status of the loan (e.g., Fully Paid, Charged Off, Current).   |
+| emp_title             | VARCHAR(100)| Borrower’s job title (self-reported). May contain nulls or PII.        |
+| emp_length            | VARCHAR(30) | Borrower’s years of employment (bucketed, e.g., < 1 year, 10+ years).  |
+| grade                 | VARCHAR(5)  | Credit grade assigned by the lender (A–G).                             |
+| sub_grade             | VARCHAR(5)  | More granular credit sub-grade (e.g., A1, B3, C5).                     |
+| home_ownership        | VARCHAR(30) | Borrower’s home ownership status (e.g., RENT, OWN, MORTGAGE).          |
+| purpose               | VARCHAR(50) | Stated purpose of the loan (e.g., debt consolidation, car, medical).   |
+| address_state         | VARCHAR(10) | Two-letter state code of borrower’s address.                           |
+| application_type      | VARCHAR(20) | Type of application — INDIVIDUAL or JOINT.                             |
+| verification_status   | VARCHAR(50) | Status of income verification (e.g., Verified, Not Verified).          |
+| issue_date            | DATE        | Date the loan was issued.                                              |
+| next_payment_date     | DATE        | Scheduled date of the next loan payment.                               |
+| last_payment_date     | DATE        | Date of the most recent payment made by the borrower.                  |
+| last_credit_pull_date | DATE        | Date the lender last pulled the borrower’s credit report.              |
+| term                  | VARCHAR(20) | Loan term in months (typically 36 or 60).                              |
+| annual_income         | FLOAT       | Borrower’s self-reported annual income.                                |
+| dti                   | FLOAT       | Debt-to-income ratio of the borrower.                                  |
+| installment           | FLOAT       | Monthly installment due for the loan.                                  |
+| int_rate              | FLOAT       | Annual interest rate of the loan (percentage).                         |
+| total_acc             | INT         | Total number of borrowers’ credit accounts.                            |
+| total_payment         | BIGINT      | Total payment made towards the loan (principal + interest).            |
+----------------------------------------------------------------------------------------------------------------
