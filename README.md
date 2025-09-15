@@ -34,7 +34,11 @@ reports/ # EDA & QC reports
 notebooks/ # exploratory analysis
 
 ---
+
 ## 📌 About this Project
-- **Type**: Capstone (portfolio-ready)  
-- **Audience**: Recruiters & hiring managers in Europe  
+- **Type**: Capstone (portfolio-ready)   
 - **Focus**: Reproducibility • GDPR/privacy awareness • Fairness checks
+
+---
+
+For detailed day-by-day updates, see [/docs/progress_log.md](docs/progress_log.md)
