@@ -29,3 +29,13 @@ Main README covers high-level overview; this log documents step-by-step progress
 - Created and merged feature branch: `feature/day3-sql-kpi-powerbi`.
 
 ---
+
+## Day 4 — Slicers & Interactivity
+
+- Added slicers for borrower `State`, loan `Grade`, and loan `Purpose`.
+- Connected slicers across KPI cards, Good/Bad loan visuals, and Loan Status table.
+- Enhanced Loan Status section with breakdown by status (Fully Paid, Current, Charged Off).
+- Verified KPI-to-table consistency through SQL and Power BI.
+- Dashboard base is now interactive
+
+--
