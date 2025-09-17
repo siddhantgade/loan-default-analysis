@@ -39,3 +39,11 @@ Main README covers high-level overview; this log documents step-by-step progress
 - Dashboard base is now interactive
 
 --
+## Day 5 — Dashboard Enhancements
+
+- Applied consistent formatting across visuals using Format Painter.  
+- Created field parameter “Select Measure” for dynamic Y-axis in area chart.  
+- Implemented correct month sorting (`MMM` with Month Number).  
+- Added Shape Map, Donut Chart, Bar Charts, and Treemap to Overview page.  
+- Configured Edit Interactions for cleaner filtering behavior.  
+- Introduced navigation buttons and images for multi-page flow.  
