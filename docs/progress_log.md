@@ -47,3 +47,8 @@ Main README covers high-level overview; this log documents step-by-step progress
 - Added Shape Map, Donut Chart, Bar Charts, and Treemap to Overview page.  
 - Configured Edit Interactions for cleaner filtering behavior.  
 - Introduced navigation buttons and images for multi-page flow.  
+--
+## Day 6 — Python Environment Setup & Initial EDA
+- Started Python workflow using Jupyter Notebook (`Bank Loan Analysis.ipynb`).
+- Loaded `financial_loan.csv` into pandas DataFrame and validated dataset shape, datatypes, and descriptive statistics.
+- Documented conceptual learnings in `Notes.md` (data loading, shape, dtypes, describe, markdown usage).

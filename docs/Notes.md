@@ -261,4 +261,63 @@ Data quality issues (e.g., emp\_title blanks) are not errors, but expected domai
 - Navigation buttons → make multi-page reports intuitive.  
 
 
+-----------------------------------------------------------------------------------------
+Day 6 — Python EDA Notes
+Jupyter Notebook Basics
 
+Markdown cells allow formatted text.
+
+# = H1 (largest heading), ## = H2, ### = H3, etc.
+Fewer # → bigger heading size.
+Use Markdown for titles, explanations, and structuring your notebook (recruiter-friendly).
+
+Code cells are for Python; always run from top to bottom for reproducibility.
+
+Reading Data
+
+pd.read_excel(path) → loads Excel file into a DataFrame (df).
+pd.read_csv(path) → use for CSV files (much faster).
+Always check file type first; .csv vs .xlsx matters.
+
+Common options:
+
+usecols=[] → load only selected columns.
+dtype={} → force column types on load.
+low_memory=False → prevents mixed dtypes warning on large files.
+
+Basic Exploration
+
+df.head() → first 5 rows (use .head(10) for more).
+df.tail() → last 5 rows.
+
+Helps confirm data loaded correctly and no parsing issues.
+
+Dimensions
+
+df.shape → returns tuple (rows, columns).
+df.shape[0] → number of rows.
+df.shape[1] → number of columns.
+
+Use print(f"Rows: {df.shape[0]}, Columns: {df.shape[1]}") for clean output.
+
+Data Types
+df.dtypes → shows data type of each column.
+int64, float64 → numeric.
+object → usually strings (needs cleaning).
+datetime64[ns] → date/time.
+
+Important for deciding preprocessing: e.g., categorical encoding, datetime parsing.
+
+Descriptive Statistics
+df.describe() → summary of numeric columns only by default:
+count → non-missing values.
+mean, std → average and spread.
+min, 25%, 50%, 75%, max → quartiles & extremes.
+
+Use df.describe(include='all') → includes object/categorical columns (count, unique, top, freq).
+
+Professional Touches
+Always start notebooks with imports + data load cell.
+Follow with a Quick Info cell: shape, dtypes, describe.
+Helps recruiters see you know structured EDA.
+Before GitHub: do Kernel → Restart & Run All to ensure clean, reproducible outputs.
