@@ -52,3 +52,11 @@ Main README covers high-level overview; this log documents step-by-step progress
 - Started Python workflow using Jupyter Notebook (`Bank Loan Analysis.ipynb`).
 - Loaded `financial_loan.csv` into pandas DataFrame and validated dataset shape, datatypes, and descriptive statistics.
 - Documented conceptual learnings in `Notes.md` (data loading, shape, dtypes, describe, markdown usage).
+--
+## Day 7 - Data Quality Fixes, KPI Computation & Visualization Enhancements
+
+- Date Parsing Fix: Resolved critical issue in issue_date parsing (day-first vs month-first) that was causing incorrect KPIs in pandas vs SQL/Power BI.
+- Good Loan KPIs: Computed key metrics — applications, funded amount, received amount, and % of good loans — with normalized values in millions for readability.
+- Time-Series Analysis: Built monthly funded loan trends with matplotlib (area + line chart) and added data labels for clear reporting.
+- Regional Analysis: Created horizontal bar chart of funded amounts by state, sorted and labeled for quick comparison.
+- Documentation: Added detailed technical notes on .reset_index(), plotting workflows, and the necessity of loops for data labeling in matplotlib.
