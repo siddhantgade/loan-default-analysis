@@ -321,3 +321,269 @@ Always start notebooks with imports + data load cell.
 Follow with a Quick Info cell: shape, dtypes, describe.
 Helps recruiters see you know structured EDA.
 Before GitHub: do Kernel → Restart & Run All to ensure clean, reproducible outputs.
+----------------------------------------------------------------------------------------------------------
+Day 7 Notes
+
+--> Parsing Dates Correctly (dayfirst vs monthfirst) Can Make or Break KPIs
+Issue
+
+In Python (pandas), my issue_date column was showing only 1 row for Dec 2021, even though I could clearly see many December dates in Excel. Because of this, my Month-to-Date (MTD) totals were tiny (~0.01M) instead of ~58M like in SQL/Power BI.
+
+--> Cause
+
+By default, pandas assumes dates are in month-first format (MM-DD-YYYY). But my dataset actually had day-first format (DD-MM-YYYY). This caused pandas to mis-read most December dates and collapse them.
+
+--> Fix (What Worked)
+
+Load the CSV with the correct setting:
+
+df = pd.read_csv(path, parse_dates=['issue_date'], dayfirst=True)
+
+--> Python Quick Notes
+
+To find avg in python we use mean
+
+To comment in python in jupyter we use #
+
+--> Good Loan KPIs
+good_loans = df[df['loan_status'].isin(["Fully Paid", "Current"])]
+
+total_loan_applications = df['id'].count()
+
+good_loan_applications = good_loans['id'].count()
+good_loan_funded_amount = good_loans['loan_amount'].sum()
+good_loan_received = good_loans['total_payment'].sum()
+
+good_loan_funded_amount_millions = good_loan_funded_amount / 1000000
+good_loan_received_millions = good_loan_received / 1000000
+
+good_loan_percentage = (good_loan_applications / total_loan_applications) * 100
+
+print("Good Loan Applications:", good_loan_applications)
+print(f"Good Loan Funded Amount(in millions): {good_loan_funded_amount_millions:.2f}M")
+print(f"Good Loan Received Amount(in millions): {good_loan_received_millions:.2f})M")
+print(f"Good Loan Percentage: {good_loan_percentage:.2f}M")
+
+-------------------------------------------------------------------------------------------
+Monthly Funded Amount (Line + Area Chart)
+Code
+monthly_funded = (
+    df.sort_values('issue_date')
+      .assign(month_name=lambda x: x['issue_date'].dt.strftime('%b %Y'))
+      .groupby('month_name', sort=False)['loan_amount']
+      .sum()
+      .div(1000000)
+      .reset_index(name='loan_amount_millions')
+)
+
+plt.figure(figsize=(10,5))
+x = range(len(monthly_funded))
+y = monthly_funded['loan_amount_millions']
+
+plt.fill_between(x, y, color='skyblue', alpha=0.5)
+plt.plot(x, y, color='blue', linewidth=2)
+
+for i, row in monthly_funded.iterrows():
+    plt.text(
+        i,
+        row['loan_amount_millions'] + 0.1,
+        f"{row['loan_amount_millions']:.2f}",
+        ha='center',
+        va='bottom',
+        fontsize=9,
+        rotation=0,
+        color='black'
+    )
+plt.title('Total Funded Amount by Month', fontsize=14)
+plt.xlabel('Month')
+plt.ylabel('Funded Amount (In Millions)')
+plt.xticks(ticks=x, labels=monthly_funded['month_name'], rotation=45)
+plt.grid(True, linestyle = '--', alpha = 0.6)
+plt.tight_layout()
+plt.show()
+
+--> Explanation
+------->Data Prep
+
+df.sort_values('issue_date')
+
+What it does: Sorts the entire DataFrame in ascending order based on issue_date.
+
+Why we do it: Ensures months appear chronologically (Jan → Feb → Mar) instead of alphabetically (Apr → Feb → Jan).
+.assign(month_name=lambda x: x['issue_date'].dt.strftime('%b %Y'))
+
+What it does: Creates a new column month_name with values like "Jan 2024".
+
+Why we do it: Provides a simple string for grouping by month.
+
+.groupby('month_name', sort=False)['loan_amount']
+
+What it does: Groups rows by month_name, focusing only on loan_amount.
+Why we do it: Aggregates all loan amounts within the same month.
+Note: sort=False preserves chronological order.
+
+.sum()
+
+What it does: Adds up all loan amounts for each month.
+Why we do it: Produces total funded loan amount per month.
+
+.div(1000000)
+
+What it does: Divides monthly totals by 1,000,000.
+
+Why we do it: Converts large numbers into millions for readability.
+
+Example:
+
+issue_date	loan_amount
+2024-03-15	250000
+2024-02-10	500000
+2024-02-28	750000
+2024-03-20	1000000
+
+Before .reset_index() (Series output):
+
+month_name
+Feb 2024    1.25
+Mar 2024    1.25
+Name: loan_amount, dtype: float64
+
+
+After .reset_index(name='loan_amount_millions'):
+
+month_name	loan_amount_millions
+Feb 2024	1.25
+Mar 2024	1.25
+
+Why .reset_index() is important:
+
+Before: result is a Series (month names = index, sums = values).
+After: result is a clean DataFrame (month as column, sums renamed to loan_amount_millions).
+Benefits: makes charting easier (explicit x and y columns).
+
+-------> Setup Plot
+
+plt.figure(figsize=(10,5))
+Creates a new chart canvas, size 10x5 inches.
+
+x = range(len(monthly_funded))
+Generates numeric x positions [0, 1, 2, …] for each month.
+
+y = monthly_funded['loan_amount_millions']
+Selects monthly totals as y-values.
+
+plt.fill_between(x, y, ...)
+Shades the area under the line in skyblue (area chart effect).
+
+plt.plot(x, y, ...)
+Draws the line itself (blue, thickness=2).
+
+------->Data Labels
+
+for i, row in monthly_funded.iterrows():
+Loops over each row in DataFrame.
+
+i = numeric index (0,1,2…).
+
+row = row data.
+
+plt.text(...)
+Adds text annotations above each point.
+
+x-coordinate: i → aligns label with month index.
+
+y-coordinate: row['loan_amount_millions'] + 0.1 → slightly above point.
+
+Text content: f"{row['loan_amount_millions']:.2f}" → formats value with 2 decimals.
+
+------->Styling:
+
+ha='center' → horizontal center.
+
+va='bottom' → bottom alignment.
+
+fontsize=9 → small font.
+
+rotation=0 → horizontal text.
+
+color='black' → black labels.
+
+------->Titles, Axes & Grid
+
+plt.title(..., fontsize=14) → Adds chart title (larger font).
+
+plt.xlabel('Month') → Names x-axis.
+
+plt.ylabel('Funded Amount (In Millions)') → Names y-axis.
+
+plt.xticks(...) → Replaces numeric x-ticks with month names, rotated 45° for readability.
+
+plt.grid(True, linestyle='--', alpha=0.6) → Dashed semi-transparent grid.
+
+plt.tight_layout() → Adjusts layout to fit labels.
+
+plt.show() → Renders chart.
+
+------->Why the Loop?
+
+Matplotlib’s plt.text() can only annotate one point at a time.
+To label all months:
+Iterate through each row (iterrows()).
+Get x-position (i).
+Get y-value (row['loan_amount_millions']).
+Place label above point.
+Without loop → only one label, not per month.
+
+-----------------------------------------------------------------------
+Regional Analysis By State (Bar Chart)
+Code
+state_funding = df.groupby('address_state')['loan_amount'].sum().sort_values(ascending=True)
+state_funding_millions = state_funding / 1000000
+
+plt.figure(figsize=(10, 8))
+bars = plt.barh(state_funding_millions.index, state_funding_millions.values, color='lightcoral')
+
+for bar in bars:
+    width = bar.get_width()
+    plt.text(
+        width + 1,
+        bar.get_y() + bar.get_height() / 2,
+        f'{width:.0f}M',
+        va='center',
+        fontsize=9
+    )
+
+plt.title('Total Funded Amount by state (in  Millions)')
+plt.xlabel('Funded Amount ($ Millions)')
+plt.ylabel('State')
+plt.tight_layout()
+plt.show()
+
+Explanation
+
+df.groupby('address_state')
+Groups DataFrame rows by address_state so all loans from the same state are bundled.
+
+['loan_amount'].sum()
+Calculates total funded amount per state.
+
+.sort_values(ascending=True)
+Sorts states from lowest to highest funded amount. Result = Series (index=state, value=total).
+
+Plotting (plt.barh)
+state_funding_millions.index → y-axis labels (states).
+state_funding_millions.values → x-axis values (amounts in millions).
+color='lightcoral' → bar color.
+bars stores bar objects for labeling.
+
+Adding Data Labels (loop)
+Iterate for bar in bars: to handle each bar individually.
+width = bar.get_width() → bar length (value).
+bar.get_y() + bar.get_height() / 2 → vertical center of bar (places text centered).
+plt.text(width + 1, ..., f'{width:.0f}M', va='center', fontsize=9) → places integer-million label slightly right of bar end.
+
+Final formatting
+Titles and axis labels clarify units. plt.tight_layout() avoids clipping. plt.show() renders the figure.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
