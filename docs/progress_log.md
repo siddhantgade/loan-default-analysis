@@ -60,3 +60,10 @@ Main README covers high-level overview; this log documents step-by-step progress
 - Time-Series Analysis: Built monthly funded loan trends with matplotlib (area + line chart) and added data labels for clear reporting.
 - Regional Analysis: Created horizontal bar chart of funded amounts by state, sorted and labeled for quick comparison.
 - Documentation: Added detailed technical notes on .reset_index(), plotting workflows, and the necessity of loops for data labeling in matplotlib.
+--
+## Day 8 — Progress Log
+
+- Developed charts: Loan Term (Donut), Employee Length, Loan Purpose, Home Ownership (Treemap).  
+- Enhanced clarity with value scaling, labels, annotations, and consistent visuals.  
+- Strengthened analysis depth by combining monetary (funded/received) and volume (applications) perspectives.  
+- Applied best practices in dashboard design: readability, scaling, and clean presentation.
