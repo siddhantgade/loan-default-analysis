@@ -11,10 +11,10 @@ It demonstrates end-to-end skills across **SQL, Python, and Power BI**, using GD
 ![Summary Dashboard](docs/screenshots/summary_v1.png)
 
 ### Overview View
-![Overview Dashboard](docs/screenshots/overview_v1.png)
+![Overview Dashboard](docs/screenshots/overview_v2.png)
 
 ### Details View
-![Details Dashboard](docs/screenshots/details_v1.png)
+![Details Dashboard](docs/screenshots/details_v3.png)
 
 **Key Insights**
 - Total Loan Applications: **38.6K**
