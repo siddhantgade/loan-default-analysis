@@ -1,11 +1,11 @@
-# Bank Loan Performance & Default Prediction — Capstone Project
+# Bank Loan Performance and Default Analysis
 
 This project analyzes consumer loan data to track loan performance and identify default risk.  
-It demonstrates end-to-end skills across **SQL, Python, and Power BI**, using GDPR-safe sample data.
+Consumer loan performance and portfolio risk analysis using SQL, Python, and Power BI on anonymized data.
 
 ---
 
-## 📊 Power BI Dashboard Preview — Bank Loan Report
+## Power BI Dashboard Preview 
 
 ### Summary View
 ![Summary Dashboard](docs/screenshots/summary_v1.png)
@@ -27,7 +27,7 @@ It demonstrates end-to-end skills across **SQL, Python, and Power BI**, using GD
 
 ---
 
-## 🔑 Deliverables
+## Deliverables
 - **SQL** → Database schema, KPIs, queries (`/sql`)
 - **Python (Jupyter)** → EDA, preprocessing, visualizations (`/reports`)
 - **Power BI** → Loan Performance Dashboard (`/powerbi`)
@@ -36,7 +36,7 @@ It demonstrates end-to-end skills across **SQL, Python, and Power BI**, using GD
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 - **SQL Server** (database + queries)
 - **Python** (pandas, matplotlib, seaborn)
 - **Power BI** (interactive dashboard)
@@ -44,7 +44,7 @@ It demonstrates end-to-end skills across **SQL, Python, and Power BI**, using GD
 
 ---
 
-## 📂 Repo Structure
+## Repo Structure
 
 data/raw/         # full dataset (ignored, not in repo)  
 data/inspected/   # safe preview sample (committed)  
@@ -55,9 +55,17 @@ notebooks/        # exploratory analysis
 
 ---
 
-## 📌 About this Project
+## About this Project
 - **Type:** Capstone (portfolio-ready)
 - **Focus:** End-to-end loan performance analysis • Reproducibility • GDPR/privacy awareness
+
+---
+
+## Analysis Scope & Interpretation
+
+This analysis is based on **final loan outcomes** only (Fully Paid, Charged Off, Current), without event-level delinquency or default timestamps.  
+Accordingly, insights are scoped to **ex-post portfolio monitoring and outcome comparison**, not lifecycle or time-to-default modeling.  
+Any early-warning or hazard-based analysis would require **event-level data** (e.g., payment history or default dates).
 
 ---
 
