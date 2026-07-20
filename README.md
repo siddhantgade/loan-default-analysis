@@ -1,6 +1,5 @@
 # Bank Loan Performance and Default Analysis
-
-This project analyzes consumer loan data to track loan performance and identify default risk.  
+ 
 Consumer loan performance and portfolio risk analysis using SQL, Python, and Power BI on anonymized data.
 
 ---
@@ -31,7 +30,7 @@ Consumer loan performance and portfolio risk analysis using SQL, Python, and Pow
 - **SQL** → Database schema, KPIs, queries (`/sql`)
 - **Python (Jupyter)** → EDA, preprocessing, visualizations (`/reports`)
 - **Power BI** → Loan Performance Dashboard (`/powerbi`)
-- **Excel** → Pivot-based dashboards (WIP)
+- **Excel** → Pivot-based dashboards 
 - **Data** → Anonymized sample dataset (`/data/inspected`)
 
 ---
